@@ -1,11 +1,13 @@
 package io.github.tonyguyot.tenjokes
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 
 /**
@@ -21,12 +23,29 @@ class SplashFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_splash, container, false)
-        val title = root.findViewById<TextView>(R.id.splashTitle)
-        title.setOnClickListener {
-            val action = SplashFragmentDirections.actionSplashFragmentToMainFragment()
-            findNavController().navigate(action)
+
+        // Retrieve or create the associated view model
+        val sharedPrefs = activity?.getPreferences(Context.MODE_PRIVATE)
+        val viewModel: SplashViewModel by viewModels {
+            SplashViewModel.Factory(sharedPrefs)
         }
+
+        // Subscribe to data changes
+        val title = root.findViewById<TextView>(R.id.splashTitle)
+        viewModel.counter.observe(viewLifecycleOwner) { counter ->
+            title.text = counter
+        }
+        viewModel.navigate.observe(viewLifecycleOwner) { navigate ->
+            if (navigate) gotoNextScreen()
+        }
+
+        // Return the root view
         return root
+    }
+
+    private fun gotoNextScreen() {
+        val action = SplashFragmentDirections.actionSplashFragmentToMainFragment()
+        findNavController().navigate(action)
     }
 
     companion object {
