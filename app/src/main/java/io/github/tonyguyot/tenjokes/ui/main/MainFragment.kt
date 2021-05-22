@@ -5,13 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.viewModels
-import io.github.tonyguyot.tenjokes.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.tonyguyot.tenjokes.data.JokeRepository
+import io.github.tonyguyot.tenjokes.data.model.Joke
 import io.github.tonyguyot.tenjokes.data.remote.JokeRemoteDataSource
+import io.github.tonyguyot.tenjokes.data.remote.Resource
 import io.github.tonyguyot.tenjokes.data.remote.RestJokeService
 import io.github.tonyguyot.tenjokes.data.remote.provideService
+import io.github.tonyguyot.tenjokes.databinding.FragmentMainBinding
+import io.github.tonyguyot.tenjokes.extensions.showIf
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -23,25 +27,49 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
+        context ?: return binding.root
 
-        // Retrieve or create the associated view model
+        // retrieve or create the associated view model
         val viewModel: MainViewModel by viewModels {
             MainViewModel.Factory(createRepository())
         }
 
-        // Subscribe to data changes
-        val title = root.findViewById<TextView>(R.id.mainTitle)
-        viewModel.list.observe(viewLifecycleOwner) { jokes ->
-            if (jokes != null) {
-                title.text = jokes.status.name
+        // setup the list
+        binding.jokeList.layoutManager = LinearLayoutManager(activity)
+        val adapter = JokeListItemAdapter { view, joke ->
+            // TODO: display details dialog box
+        }
+        binding.jokeList.adapter = adapter
+
+        // subscribe to data changes
+        viewModel.list.observe(viewLifecycleOwner) { result ->
+            if (result != null) {
+                Timber.d("[LiveData] New result for list: %s", result.status.name)
+                handleResult(binding, adapter, result)
             }
         }
 
         // return root element
-        return root
+        return binding.root
+    }
+
+    private fun handleResult(
+        binding: FragmentMainBinding,
+        adapter: JokeListItemAdapter,
+        result: Resource<List<Joke>>
+    ) {
+        // if loading in progress, show the progress bar
+        binding.progressBar.showIf { result.isLoading() }
+
+        // if loading failed, show the error message
+        binding.errorMessage.showIf { result.isError() }
+
+        // if data available, display it
+        binding.jokeList.showIf { result.isSuccess() }
+        result.data?.let { adapter.submitList(it) }
     }
 
     // temporary => replace by dependency injection

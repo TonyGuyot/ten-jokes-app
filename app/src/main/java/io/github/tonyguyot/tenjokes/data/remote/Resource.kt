@@ -23,6 +23,10 @@ data class Resource<out T>(
 ) {
     enum class Status { SUCCESS, ERROR, LOADING }
 
+    fun isLoading() = status == Status.LOADING
+    fun isSuccess() = status == Status.SUCCESS
+    fun isError() = status == Status.ERROR
+
     companion object {
         fun <T> success(data: T) = Resource<T>(Status.SUCCESS, data)
         fun <T> loading() = Resource<T>(Status.LOADING)

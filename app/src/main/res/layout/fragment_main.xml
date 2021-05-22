@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/mainTitle"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_main_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <!-- list of jokes -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/jokeList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            tools:context="io.github.tonyguyot.tenjokes.ui.MainActivity"
+            tools:listitem="@layout/list_item_joke"
+            />
+
+        <!-- error message if no data retrieved -->
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:gravity="center"
+            style="?android:attr/textAppearanceLarge"
+            android:text="@string/error_no_response_from_server"
+            />
+
+        <!-- progress bar during loading of the data -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:visibility="visible"
+            />
+
+    </FrameLayout>
+
+</layout>

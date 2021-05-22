@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">TenJokes</string>
+    <string name="app_name">10 Random Jokes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello splash fragment</string>
-    <string name="hello_main_fragment">Hello main fragment</string>
+
+    <!-- Error messages -->
+    <string name="error_no_response_from_server">No response received from server.\nPlease retry later.</string>
+
 </resources>
