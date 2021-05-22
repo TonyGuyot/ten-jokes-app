@@ -40,7 +40,7 @@ class MainFragment : Fragment() {
             MainViewModel.Factory(createRepository())
         }
 
-        // setup the list
+        // setup the UI element
         binding.jokeList.layoutManager = LinearLayoutManager(activity)
         val adapter = JokeListItemAdapter { view, joke ->
             showDetails(joke)
@@ -50,6 +50,7 @@ class MainFragment : Fragment() {
             binding.swipeRefreshJokeList.isRefreshing = false
             viewModel.refresh()
         }
+        binding.retryButton.setOnClickListener { viewModel.refresh() }
 
         // subscribe to data changes
         viewModel.list.observe(viewLifecycleOwner) { result ->
@@ -88,8 +89,9 @@ class MainFragment : Fragment() {
         // if loading in progress, show the progress bar
         binding.progressBar.showIf { result.isLoading() }
 
-        // if loading failed, show the error message
+        // if loading failed, show the error message & retry button
         binding.errorMessage.showIf { result.isError() }
+        binding.retryButton.showIf { result.isError() }
 
         // if data available, display it
         binding.jokeList.showIf { result.isSuccess() }

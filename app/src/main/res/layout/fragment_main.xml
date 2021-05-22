@@ -3,9 +3,46 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- progress bar during loading of the data -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible"
+            />
+
+        <!-- error message if no data retrieved -->
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:id="@+id/errorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:gravity="center"
+            android:text="@string/error_no_response_from_server"
+            android:visibility="gone"
+            tools:visibility="visible"
+            />
+
+        <!-- retry button if error -->
+        <Button
+            android:id="@+id/retryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/list_retry_button"
+            android:visibility="gone"
+            tools:visibility="visible"
+            />
 
         <!-- list of jokes -->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -24,28 +61,6 @@
                 />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <!-- error message if no data retrieved -->
-        <TextView
-            android:id="@+id/errorMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginEnd="@dimen/margin_normal"
-            android:gravity="center"
-            style="?android:attr/textAppearanceLarge"
-            android:text="@string/error_no_response_from_server"
-            />
-
-        <!-- progress bar during loading of the data -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:visibility="visible"
-            />
-
-    </FrameLayout>
+    </LinearLayout>
 
 </layout>

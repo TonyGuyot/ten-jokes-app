@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">10 Random Jokes</string>
 
-    <!-- Dialog -->
+    <!-- List -->
+    <string name="list_retry_button">Retry</string>
+
+    <!-- Details -->
     <string name="details_dialog_title">Joke details</string>
     <string name="details_dialog_ok">OK</string>
 
