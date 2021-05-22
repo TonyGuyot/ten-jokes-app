@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.splash.SplashFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/splashTitle"
+        android:id="@+id/appStartCounter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:padding="@dimen/margin_big"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        tools:text="123" />
 
 </FrameLayout>

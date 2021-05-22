@@ -17,6 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/listBackground"
+        android:layout_margin="@dimen/margin_small"
         android:onClick="@{clickListener}">
 
         <!-- First part of the joke: the setup -->
@@ -33,6 +35,7 @@
             android:textAppearance="?attr/textAppearanceListItem"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Lorem ipsum"
             />
 
@@ -44,10 +47,9 @@
             android:gravity="center"
             android:paddingLeft="@dimen/margin_normal"
             android:paddingRight="@dimen/margin_normal"
-            android:paddingTop="@dimen/margin_small"
             android:paddingBottom="@dimen/margin_small"
             android:text="@{joke.punchline}"
-            android:textAppearance="?attr/textAppearanceListItem"
+            android:textAppearance="?attr/textAppearanceListItemSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/jokeSetup"

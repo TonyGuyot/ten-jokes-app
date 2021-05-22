@@ -32,7 +32,7 @@ class SplashFragment : Fragment() {
         }
 
         // Subscribe to data changes
-        val title = root.findViewById<TextView>(R.id.splashTitle)
+        val title = root.findViewById<TextView>(R.id.appStartCounter)
         viewModel.counter.observe(viewLifecycleOwner) { counter ->
             title.text = counter
         }
