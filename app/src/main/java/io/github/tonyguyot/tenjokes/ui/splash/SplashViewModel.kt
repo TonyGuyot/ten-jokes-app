@@ -20,7 +20,7 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashViewModel(private val sharedPref: SharedPreferences?) : ViewModel() {
+class SplashViewModel(private val repository: SharedPreferences?) : ViewModel() {
 
     private val _counter = MutableLiveData("")
     /** Indicate how many times the app has been started before */
@@ -38,11 +38,11 @@ class SplashViewModel(private val sharedPref: SharedPreferences?) : ViewModel() 
     }
 
     private fun retrieveAndUpdateCounter() {
-        val currentCounter = sharedPref?.getInt(APP_START_COUNTER, 0) ?: 0
+        val currentCounter = repository?.getInt(APP_START_COUNTER, 0) ?: 0
         _counter.postValue(currentCounter.toString())
         val newCounter = currentCounter + 1
-        sharedPref ?: return
-        with (sharedPref.edit()) {
+        repository ?: return
+        with (repository.edit()) {
             putInt(APP_START_COUNTER, newCounter)
             apply()
         }
@@ -55,10 +55,10 @@ class SplashViewModel(private val sharedPref: SharedPreferences?) : ViewModel() 
         }
     }
 
-    class Factory(private val sharedPref: SharedPreferences?) : ViewModelProvider.Factory {
+    class Factory(private val repository: SharedPreferences?) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return SplashViewModel(sharedPref) as T
+            return SplashViewModel(repository) as T
         }
     }
 
