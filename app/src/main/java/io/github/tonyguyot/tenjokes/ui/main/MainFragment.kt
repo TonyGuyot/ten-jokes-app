@@ -1,10 +1,11 @@
-package io.github.tonyguyot.tenjokes
+package io.github.tonyguyot.tenjokes.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.github.tonyguyot.tenjokes.R
 
 /**
  * A simple [Fragment] subclass.

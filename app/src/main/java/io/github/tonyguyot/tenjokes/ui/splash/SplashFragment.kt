@@ -1,4 +1,4 @@
-package io.github.tonyguyot.tenjokes
+package io.github.tonyguyot.tenjokes.ui.splash
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import io.github.tonyguyot.tenjokes.R
 
 /**
  * A simple [Fragment] subclass.

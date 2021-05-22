@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.tonyguyot.tenjokes
+package io.github.tonyguyot.tenjokes.ui.splash
 
 import android.content.SharedPreferences
 import androidx.lifecycle.*
