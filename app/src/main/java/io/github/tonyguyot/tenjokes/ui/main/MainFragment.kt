@@ -5,14 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.github.tonyguyot.tenjokes.R
 import io.github.tonyguyot.tenjokes.data.JokeRepository
 import io.github.tonyguyot.tenjokes.data.model.Joke
 import io.github.tonyguyot.tenjokes.data.remote.JokeRemoteDataSource
 import io.github.tonyguyot.tenjokes.data.remote.Resource
 import io.github.tonyguyot.tenjokes.data.remote.RestJokeService
 import io.github.tonyguyot.tenjokes.data.remote.provideService
+import io.github.tonyguyot.tenjokes.databinding.DialogJokeDetailsBinding
 import io.github.tonyguyot.tenjokes.databinding.FragmentMainBinding
 import io.github.tonyguyot.tenjokes.extensions.showIf
 import timber.log.Timber
@@ -40,7 +43,7 @@ class MainFragment : Fragment() {
         // setup the list
         binding.jokeList.layoutManager = LinearLayoutManager(activity)
         val adapter = JokeListItemAdapter { view, joke ->
-            // TODO: display details dialog box
+            showDetails(joke)
         }
         binding.jokeList.adapter = adapter
 
@@ -54,6 +57,23 @@ class MainFragment : Fragment() {
 
         // return root element
         return binding.root
+    }
+
+    private fun showDetails(joke: Joke) {
+        context ?: return
+        val dialogBinding = DialogJokeDetailsBinding.inflate(
+                LayoutInflater.from(context),
+                null,
+                false
+            )
+        dialogBinding.joke = joke
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle(R.string.details_dialog_title)
+            .setView(dialogBinding.root)
+            .setPositiveButton(R.string.details_dialog_ok) { dialog, _ -> dialog.dismiss() }
+            .create()
+        dialog.show()
     }
 
     private fun handleResult(
