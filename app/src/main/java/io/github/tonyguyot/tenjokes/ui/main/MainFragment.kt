@@ -46,6 +46,10 @@ class MainFragment : Fragment() {
             showDetails(joke)
         }
         binding.jokeList.adapter = adapter
+        binding.swipeRefreshJokeList.setOnRefreshListener {
+            binding.swipeRefreshJokeList.isRefreshing = false
+            viewModel.refresh()
+        }
 
         // subscribe to data changes
         viewModel.list.observe(viewLifecycleOwner) { result ->

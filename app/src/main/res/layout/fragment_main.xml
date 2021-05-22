@@ -8,15 +8,21 @@
         android:layout_height="match_parent">
 
         <!-- list of jokes -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/jokeList"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshJokeList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"
-            tools:context="io.github.tonyguyot.tenjokes.ui.MainActivity"
-            tools:listitem="@layout/list_item_joke"
-            />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/jokeList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                tools:context="io.github.tonyguyot.tenjokes.ui.MainActivity"
+                tools:listitem="@layout/list_item_joke"
+                />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <!-- error message if no data retrieved -->
         <TextView

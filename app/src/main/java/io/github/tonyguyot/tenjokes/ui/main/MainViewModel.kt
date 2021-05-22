@@ -15,18 +15,26 @@
  */
 package io.github.tonyguyot.tenjokes.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import io.github.tonyguyot.tenjokes.data.JokeRepository
 import io.github.tonyguyot.tenjokes.data.model.Joke
 import io.github.tonyguyot.tenjokes.data.remote.Resource
 
 class MainViewModel(private val repository: JokeRepository) : ViewModel() {
 
-    val list: LiveData<Resource<List<Joke>>> by lazy {
-        repository.observeRandomJokes()
+    private val loadTrigger = MutableLiveData<Unit>()
+
+    val list: LiveData<Resource<List<Joke>>> = loadTrigger.switchMap { loadData() }
+
+    init {
+        refresh()
     }
+
+    fun refresh() {
+        loadTrigger.value = Unit
+    }
+
+    private fun loadData(): LiveData<Resource<List<Joke>>> = repository.observeRandomJokes()
 
     class Factory(private val repository: JokeRepository) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
