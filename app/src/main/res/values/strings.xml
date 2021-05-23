@@ -5,8 +5,8 @@
     <string name="list_retry_button">Retry</string>
 
     <!-- Details -->
-    <string name="details_dialog_title">Joke details</string>
-    <string name="details_dialog_ok">OK</string>
+    <string name="details_dialog_title">Joke #%d</string>
+    <string name="details_dialog_ok">Got it</string>
 
     <!-- Error messages -->
     <string name="error_no_response_from_server">No response received from server.\nPlease retry later.</string>

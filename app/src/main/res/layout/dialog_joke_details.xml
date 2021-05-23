@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable name="title" type="String" />
         <variable
             name="joke"
             type="io.github.tonyguyot.tenjokes.data.model.Joke" />
@@ -16,41 +19,58 @@
             android:id="@+id/detailJokeId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Integer.toString(joke.id)}"
-            android:textSize="20sp"
+            android:paddingStart="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_normal"
+            android:text="@{title}"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Joke #123" />
 
         <TextView
             android:id="@+id/detailJokeType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_small"
             android:text="@{joke.type}"
-            android:textSize="20sp"
+            android:textAppearance="?attr/textAppearanceButton"
             app:layout_constraintTop_toBottomOf="@id/detailJokeId"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="General" />
 
         <TextView
             android:id="@+id/detailJokeSetup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_normal"
+            android:gravity="center"
             android:text="@{joke.setup}"
-            android:textSize="20sp"
+            android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintTop_toBottomOf="@id/detailJokeType"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="This is the setup" />
 
         <TextView
             android:id="@+id/detailJokePunchLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_small"
             android:text="@{joke.punchline}"
-            android:textSize="20sp"
+            android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toBottomOf="@id/detailJokeSetup"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="This is the punchline" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

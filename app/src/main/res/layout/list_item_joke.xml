@@ -8,16 +8,16 @@
     <data>
         <variable
             name="clickListener"
-            type="android.view.View.OnClickListener"/>
+            type="android.view.View.OnClickListener" />
         <variable
             name="joke"
-            type="io.github.tonyguyot.tenjokes.data.model.Joke"/>
+            type="io.github.tonyguyot.tenjokes.data.model.Joke" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/listBackground"
+        android:background="@drawable/rounded_corners"
         android:layout_margin="@dimen/margin_small"
         android:onClick="@{clickListener}">
 

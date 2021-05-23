@@ -72,9 +72,9 @@ class MainFragment : Fragment() {
                 false
             )
         dialogBinding.joke = joke
+        dialogBinding.title = requireContext().getString(R.string.details_dialog_title, joke.id)
 
         val dialog = AlertDialog.Builder(requireContext())
-            .setTitle(R.string.details_dialog_title)
             .setView(dialogBinding.root)
             .setPositiveButton(R.string.details_dialog_ok) { dialog, _ -> dialog.dismiss() }
             .create()
