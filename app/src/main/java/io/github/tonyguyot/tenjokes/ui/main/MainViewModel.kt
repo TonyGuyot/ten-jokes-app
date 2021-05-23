@@ -16,11 +16,11 @@
 package io.github.tonyguyot.tenjokes.ui.main
 
 import androidx.lifecycle.*
-import io.github.tonyguyot.tenjokes.data.JokeRepository
+import io.github.tonyguyot.tenjokes.data.JokeRepositoryInterface
 import io.github.tonyguyot.tenjokes.data.model.Joke
 import io.github.tonyguyot.tenjokes.data.remote.generic.Resource
 
-class MainViewModel(private val repository: JokeRepository) : ViewModel() {
+class MainViewModel(private val repository: JokeRepositoryInterface) : ViewModel() {
 
     private val loadTrigger = MutableLiveData<Unit>()
 
@@ -36,7 +36,7 @@ class MainViewModel(private val repository: JokeRepository) : ViewModel() {
 
     private fun loadData(): LiveData<Resource<List<Joke>>> = repository.observeRandomJokes()
 
-    class Factory(private val repository: JokeRepository) : ViewModelProvider.Factory {
+    class Factory(private val repository: JokeRepositoryInterface) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return MainViewModel(repository) as T

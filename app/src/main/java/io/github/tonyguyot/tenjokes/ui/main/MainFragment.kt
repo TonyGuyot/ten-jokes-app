@@ -42,9 +42,7 @@ class MainFragment : Fragment() {
 
         // setup the UI element
         binding.jokeList.layoutManager = LinearLayoutManager(activity)
-        val adapter = JokeListItemAdapter { view, joke ->
-            showDetails(joke)
-        }
+        val adapter = JokeListItemAdapter { joke -> showDetails(joke) }
         binding.jokeList.adapter = adapter
         binding.swipeRefreshJokeList.setOnRefreshListener {
             binding.swipeRefreshJokeList.isRefreshing = false

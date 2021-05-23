@@ -23,7 +23,7 @@ import io.github.tonyguyot.tenjokes.data.remote.generic.Resource
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
-class JokeRepository(private val remote: JokeRemoteDataSource) {
+class JokeRepository(private val remote: JokeRemoteDataSource) : JokeRepositoryInterface {
 
     /**
      * Retrieve the data as a [Resource] in a LiveData stream, so that the caller will be
@@ -34,7 +34,7 @@ class JokeRepository(private val remote: JokeRemoteDataSource) {
      *   - [Resource.Status.ERROR] if an error has occurred
      *   - [Resource.Status.LOADING] if the process is still in progress
      */
-    fun observeRandomJokes(): LiveData<Resource<List<Joke>>> = liveData(Dispatchers.IO) {
+    override fun observeRandomJokes(): LiveData<Resource<List<Joke>>> = liveData(Dispatchers.IO) {
         Timber.d("Loading...")
         emit(Resource.loading<List<Joke>>())
         emit(remote.fetchNewJokes())

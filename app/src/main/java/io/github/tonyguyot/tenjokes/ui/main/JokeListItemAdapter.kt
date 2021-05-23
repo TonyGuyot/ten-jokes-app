@@ -28,7 +28,7 @@ import timber.log.Timber
 /**
  * Adapter for the [RecyclerView] in [MainFragment].
  */
-class JokeListItemAdapter(val onClickListener: (View, Joke) -> Unit)
+class JokeListItemAdapter(val onClickListener: (Joke) -> Unit)
     : ListAdapter<Joke, JokeListItemAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -48,7 +48,7 @@ class JokeListItemAdapter(val onClickListener: (View, Joke) -> Unit)
     private fun createOnClickListener(joke: Joke): View.OnClickListener {
         return View.OnClickListener {
             Timber.d("click on item %d", joke.id)
-            onClickListener(it, joke)
+            onClickListener(joke)
         }
     }
 
