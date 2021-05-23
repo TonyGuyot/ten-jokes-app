@@ -19,7 +19,8 @@
             android:gravity="center"
             android:padding="@dimen/margin_big"
             android:text="@{viewModel.counter}"
-            android:textAppearance="?attr/textAppearanceHeadline1"
+            android:textAppearance="?attr/textAppearanceHeadline2"
+            android:fontFamily="@font/luckiestguy"
             tools:text="123" />
 
     </FrameLayout>
