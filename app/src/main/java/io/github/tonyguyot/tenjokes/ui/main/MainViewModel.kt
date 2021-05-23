@@ -18,7 +18,7 @@ package io.github.tonyguyot.tenjokes.ui.main
 import androidx.lifecycle.*
 import io.github.tonyguyot.tenjokes.data.JokeRepository
 import io.github.tonyguyot.tenjokes.data.model.Joke
-import io.github.tonyguyot.tenjokes.data.remote.Resource
+import io.github.tonyguyot.tenjokes.data.remote.generic.Resource
 
 class MainViewModel(private val repository: JokeRepository) : ViewModel() {
 

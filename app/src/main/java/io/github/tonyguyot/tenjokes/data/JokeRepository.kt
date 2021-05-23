@@ -19,7 +19,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import io.github.tonyguyot.tenjokes.data.model.Joke
 import io.github.tonyguyot.tenjokes.data.remote.JokeRemoteDataSource
-import io.github.tonyguyot.tenjokes.data.remote.Resource
+import io.github.tonyguyot.tenjokes.data.remote.generic.Resource
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 

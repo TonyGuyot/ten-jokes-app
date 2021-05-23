@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.tonyguyot.tenjokes.data.remote
+package io.github.tonyguyot.tenjokes.data.remote.generic
 
 import retrofit2.Response
+import timber.log.Timber
 import java.lang.Exception
 
 /**
@@ -25,6 +26,7 @@ abstract class BaseRemoteDataSource {
     protected suspend fun <T> fetchResource(call: suspend () -> Response<T>): Resource<T> {
         try {
             val response = call()
+            Timber.d("HTTP response received with status code %d", response.code())
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) return Resource.success(body)
@@ -34,6 +36,7 @@ abstract class BaseRemoteDataSource {
                 Exception("HTTP error ${response.code()}")
             )
         } catch (e: Exception) {
+            Timber.i(e, "HTTP call failed")
             return Resource.error(e)
         }
     }

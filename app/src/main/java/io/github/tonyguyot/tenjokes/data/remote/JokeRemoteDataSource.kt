@@ -16,6 +16,8 @@
 package io.github.tonyguyot.tenjokes.data.remote
 
 import io.github.tonyguyot.tenjokes.data.model.Joke
+import io.github.tonyguyot.tenjokes.data.remote.generic.BaseRemoteDataSource
+import io.github.tonyguyot.tenjokes.data.remote.generic.Resource
 
 /**
  * Retrieve data about jokes from the network.

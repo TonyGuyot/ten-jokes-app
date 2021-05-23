@@ -12,7 +12,7 @@ import io.github.tonyguyot.tenjokes.R
 import io.github.tonyguyot.tenjokes.data.JokeRepository
 import io.github.tonyguyot.tenjokes.data.model.Joke
 import io.github.tonyguyot.tenjokes.data.remote.JokeRemoteDataSource
-import io.github.tonyguyot.tenjokes.data.remote.Resource
+import io.github.tonyguyot.tenjokes.data.remote.generic.Resource
 import io.github.tonyguyot.tenjokes.data.remote.RestJokeService
 import io.github.tonyguyot.tenjokes.data.remote.provideService
 import io.github.tonyguyot.tenjokes.databinding.DialogJokeDetailsBinding

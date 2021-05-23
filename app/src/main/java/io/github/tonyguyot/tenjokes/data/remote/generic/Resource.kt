@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.tonyguyot.tenjokes.data.remote
+package io.github.tonyguyot.tenjokes.data.remote.generic
 
 /** A generic class that contains data and status about loading this data. */
 data class Resource<out T>(
