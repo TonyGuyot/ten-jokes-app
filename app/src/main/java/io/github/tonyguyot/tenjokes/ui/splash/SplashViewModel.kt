@@ -22,13 +22,13 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel(private val repository: SharedPreferences?) : ViewModel() {
 
-    private val _counter = MutableLiveData("")
     /** Indicate how many times the app has been started before */
+    private val _counter = MutableLiveData("")
     val counter: LiveData<String>
         get() = _counter
 
-    private val _navigate = MutableLiveData(false)
     /** If `true`, indicate it's time to go to next screen */
+    private val _navigate = MutableLiveData(false)
     val navigate: LiveData<Boolean>
         get() = _navigate
 

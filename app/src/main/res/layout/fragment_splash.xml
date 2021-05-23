@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.splash.SplashFragment">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/appStartCounter"
+    <data>
+        <variable name="viewModel" type="io.github.tonyguyot.tenjokes.ui.splash.SplashViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:padding="@dimen/margin_big"
-        android:textAppearance="?attr/textAppearanceHeadline1"
-        tools:text="123" />
+        tools:context=".ui.splash.SplashFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/appStartCounter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/margin_big"
+            android:text="@{viewModel.counter}"
+            android:textAppearance="?attr/textAppearanceHeadline1"
+            tools:text="123" />
+
+    </FrameLayout>
+</layout>
