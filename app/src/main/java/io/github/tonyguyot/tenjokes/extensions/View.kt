@@ -17,15 +17,17 @@ package io.github.tonyguyot.tenjokes.extensions
 
 import android.view.View
 
-
+/** Do not make the [View] visible */
 fun View.hide() {
     visibility = View.GONE
 }
 
+/** Make the [View] visible */
 fun View.show() {
     visibility = View.VISIBLE
 }
 
+/** Make the [View] visible if the given [predicate] evaluates to `true` or hide it otherwise */
 fun View.showIf(predicate: () -> Boolean) {
     if (predicate()) show() else hide()
 }

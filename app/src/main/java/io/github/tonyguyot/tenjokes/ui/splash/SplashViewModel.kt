@@ -17,9 +17,20 @@ package io.github.tonyguyot.tenjokes.ui.splash
 
 import android.content.SharedPreferences
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
+/**
+ * View model for the [SplashFragment].
+ *
+ * It exposes two states:
+ *   - the counter to be displayed
+ *   - a trigger to indicate the end of the splash screen
+ *
+ * @property repository a simple [SharedPreferences] object plays the role of a repository
+ */
 class SplashViewModel(private val repository: SharedPreferences?) : ViewModel() {
 
     /** Indicate how many times the app has been started before */
@@ -38,20 +49,28 @@ class SplashViewModel(private val repository: SharedPreferences?) : ViewModel() 
     }
 
     private fun retrieveAndUpdateCounter() {
-        val currentCounter = repository?.getInt(APP_START_COUNTER, 0) ?: 0
-        _counter.postValue(currentCounter.toString())
-        val newCounter = currentCounter + 1
-        repository ?: return
-        with (repository.edit()) {
-            putInt(APP_START_COUNTER, newCounter)
-            apply()
+        viewModelScope.launch {
+            // read and report the current value of the counter
+            val currentCounter = withContext(Dispatchers.IO) {
+                repository?.getInt(APP_START_COUNTER, 0) ?: 0
+            }
+            _counter.value = currentCounter.toString()
+
+            // increment and save the counter for the next call
+            val newCounter = currentCounter + 1
+            repository?.let {
+                with (it.edit()) {
+                    putInt(APP_START_COUNTER, newCounter)
+                    apply()
+                }
+            }
         }
     }
 
     private fun startTimer() {
         viewModelScope.launch {
             delay(TIMER_DURATION_IN_MILLIS)
-            _navigate.postValue(true)
+            _navigate.value = true
         }
     }
 

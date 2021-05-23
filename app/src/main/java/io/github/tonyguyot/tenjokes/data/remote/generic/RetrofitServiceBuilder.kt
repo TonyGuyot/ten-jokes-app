@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.tonyguyot.tenjokes.data.remote
+package io.github.tonyguyot.tenjokes.data.remote.generic
 
 import com.google.gson.Gson
 import io.github.tonyguyot.tenjokes.BuildConfig

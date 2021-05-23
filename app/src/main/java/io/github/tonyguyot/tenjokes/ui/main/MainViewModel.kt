@@ -20,16 +20,25 @@ import io.github.tonyguyot.tenjokes.data.JokeRepositoryInterface
 import io.github.tonyguyot.tenjokes.data.model.Joke
 import io.github.tonyguyot.tenjokes.data.remote.generic.Resource
 
+/**
+ * View model for the [MainFragment].
+ *
+ * It exposes a single state:
+ *   - the list of jokes to be displayed
+ */
 class MainViewModel(private val repository: JokeRepositoryInterface) : ViewModel() {
 
+    /** Trigger to activate the loading of new jokes */
     private val loadTrigger = MutableLiveData<Unit>()
 
+    /** The list of joke to be displayed */
     val list: LiveData<Resource<List<Joke>>> = loadTrigger.switchMap { loadData() }
 
     init {
         refresh()
     }
 
+    /** Refresh the list to display new jokes */
     fun refresh() {
         loadTrigger.value = Unit
     }
