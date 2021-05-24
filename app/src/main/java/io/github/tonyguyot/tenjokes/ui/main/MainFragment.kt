@@ -112,7 +112,6 @@ class MainFragment : Fragment() {
         result.data?.let { adapter.submitList(it) }
     }
 
-    // temporary => replace by dependency injection
     private fun createRepository(): JokeRepository {
         val service = provideService(RestJokeService::class.java, RestJokeService.ENDPOINT)
         val remote = JokeRemoteDataSource(service)
