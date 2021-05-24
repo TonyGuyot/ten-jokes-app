@@ -4,6 +4,12 @@
 
 Display a list of random jokes.
 
+## Screenshots
+
+![screens](./artwork/screens.png "Workflow")
+
+More screenshots in the artwork folder.
+
 ## Technology stack
 
 Uses the single activity pattern (one activity for the whole app, screens are represented by fragments) using the Jetpack Navigation Component.
@@ -13,4 +19,6 @@ Architecture is a standard MVVM as described in the Android Archicture Component
 Communication with the Rest server is done with Retrofit. There is no local persistence.
 
 The splash screen does not use a real repository but a simple shared preferences.
+
+Some simple animations on the splash screen and a custom font. Night mode is also supported.
 
